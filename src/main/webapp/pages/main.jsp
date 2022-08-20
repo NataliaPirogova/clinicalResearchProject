@@ -5,6 +5,6 @@
 </head>
 <body>
 <h1>Main page</h1>
-<a href="/healthcarerganizations">Organizations</a>
+<a href="${pageContext.request.contextPath}/healthcareorganizations">Organizations</a>
 </body>
 </html>
