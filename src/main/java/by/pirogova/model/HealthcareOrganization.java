@@ -1,18 +1,26 @@
 package by.pirogova.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
+import javax.persistence.*;
+
+@AllArgsConstructor
+@Builder
+@Data
+@Entity
+@Table(name = "healthcareorganizations")
 public class HealthcareOrganization {
     private String name;
     private String email;
-    private String phone;
+    private long phone;
+    @Id
+    @Column(name = "healthcareorganizationID")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     public HealthcareOrganization() {
-    }
-
-    public HealthcareOrganization(String name, String email, String phone) {
-        this.name = name;
-        this.email = email;
-        this.phone = phone;
     }
 
     @Override
@@ -32,7 +40,7 @@ public class HealthcareOrganization {
         this.email = email;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 
@@ -48,7 +56,7 @@ public class HealthcareOrganization {
         return email;
     }
 
-    public String getPhone() {
+    public long getPhone() {
         return phone;
     }
 

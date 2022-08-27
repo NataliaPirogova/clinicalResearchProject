@@ -2,7 +2,7 @@ package by.pirogova.controller;
 
 import by.pirogova.model.HealthcareOrganization;
 import by.pirogova.service.OrganizationService;
-import by.pirogova.service.OrganizationServiceImplementation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +13,12 @@ import java.util.List;
 @Controller
 public class OrganizationController {
 
-    private final OrganizationService organizationService = new OrganizationServiceImplementation();
+    private final OrganizationService organizationService;
+
+    @Autowired
+    public OrganizationController(OrganizationService organizationService) {
+        this.organizationService = organizationService;
+    }
 
     @GetMapping(value = "/")
     public ModelAndView mainPage() {

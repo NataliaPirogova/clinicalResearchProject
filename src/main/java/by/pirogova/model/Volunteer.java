@@ -1,17 +1,31 @@
 package by.pirogova.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@AllArgsConstructor
+@Builder
+@Data
+@Entity
+@Table(name = "volunteercontactinformation")
 public class Volunteer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int volunteerId;
     private String firstName;//имя
     private String lastName;//фамилия
     private String middleName;//отчество
     private LocalDateTime DoB;//дата рождения
-    private String sex;//пол
-    private String login;
-    private String password;
+    private Gender gender;//пол
     private long phoneNumber;
     private String email;
+
+    public Volunteer() {
+    }
 
     public String getFirstName() {
         return firstName;
@@ -41,32 +55,18 @@ public class Volunteer {
         return DoB;
     }
 
+    @Column(name = "dateOfBirth")
     public void setDoB(LocalDateTime doB) {
         DoB = doB;
     }
 
-    public String getSex() {
-        return sex;
+    @Column(name = "dateOfBirth")
+    public Gender getGender() {
+        return gender;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setGender(Gender gender) {
+        this.gender = gender;
     }
 
     public long getPhoneNumber() {
@@ -84,4 +84,8 @@ public class Volunteer {
     public void setEmail(String email) {
         this.email = email;
     }
+}
+
+enum Gender {
+    MALE, FEMALE
 }

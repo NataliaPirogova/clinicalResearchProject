@@ -3,12 +3,23 @@ package by.pirogova.service;
 import by.pirogova.model.HealthcareOrganization;
 import by.pirogova.repository.HealthcareOrganizationRepository;
 import by.pirogova.repository.HealthcareOrganizationRepositoryImplementation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+@Service
+@Transactional
 public class OrganizationServiceImplementation implements OrganizationService {
 
-    private final HealthcareOrganizationRepository healthcareOrganizationRepository = new HealthcareOrganizationRepositoryImplementation();
+    private final HealthcareOrganizationRepository healthcareOrganizationRepository;
+
+    @Autowired
+    public OrganizationServiceImplementation(HealthcareOrganizationRepository healthcareOrganizationRepository) {
+        this.healthcareOrganizationRepository = healthcareOrganizationRepository;
+    }
 
     @Override
     public List<HealthcareOrganization> allHealthcareOrganizations() {
