@@ -10,7 +10,7 @@ public class Volunteer {
     private String sex;//пол
     private String login;
     private String password;
-    private String phoneNumber;
+    private long phoneNumber;
     private String email;
 
     public String getFirstName() {
@@ -69,11 +69,11 @@ public class Volunteer {
         this.password = password;
     }
 
-    public String getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
