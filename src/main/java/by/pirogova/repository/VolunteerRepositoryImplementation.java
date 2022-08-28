@@ -26,20 +26,20 @@ public class VolunteerRepositoryImplementation implements VolunteerRepository {
 
     @Override
     public void addVolunteer(Volunteer volunteer) {
-Session session = sessionFactory.getCurrentSession();
-session.persist(volunteer);
+        Session session = sessionFactory.getCurrentSession();
+        session.persist(volunteer);
     }
 
     @Override
     public void editVolunteer(Volunteer volunteer) {
-Session session = sessionFactory.getCurrentSession();
-session.update(volunteer);
+        Session session = sessionFactory.getCurrentSession();
+        session.update(volunteer);
     }
 
     @Override
     public void deleteVolunteer(Volunteer volunteer) {
-Session session = sessionFactory.getCurrentSession();
-session.delete(volunteer);
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(volunteer);
     }
 
     @Override
