@@ -21,7 +21,7 @@ public class VolunteerRepositoryImplementation implements VolunteerRepository {
     @Override
     public List<Volunteer> allVolunteers() {
         Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from volunteercontactinformation", Volunteer.class).list();
+        return session.createQuery("from Volunteer", Volunteer.class).list();
     }
 
     @Override

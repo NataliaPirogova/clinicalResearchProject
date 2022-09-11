@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/" lang="en">
+<meta charset="UTF-8">
+<head>
+    <title>Registration form</title>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<h1>Fill in the form to register as a volunteer</h1>
+<form th:action="@{/registrationVolunteer}" method="post" th:object="${volunteer}">
+    <label for="firstName">First name
+        <input th:type="text" id="firstName" placeholder="firstName" th:field="*{firstName}">
+    </label><br>
+    <label for="lastName">Last name
+    <input th:type="text" id="lastName" placeholder="lastName" th:field="*{lastName}"></label><br>
+    <label for="middleName">Middle name
+    <input th:type="text" id="middleName" placeholder="middleName" th:field="*{middleName}"></label><br>
+    <label for="doB">Date of Birth
+    <input type="date" id="doB" th:field="*{doB}"></label><br>
+    <label for="gender">Gender
+    <select id="gender" th:field="*{gender}">
+        <option th:value="FEMALE">female</option>
+        <option th:value="MALE">male</option>
+    </select></label><br>
+    <label for="phoneNumber">Phone number +375
+    <input th:type="text" id="phoneNumber" th:field="*{phoneNumber}"></label><br>
+    <label for="email">Email
+    <input th:type="text" id="email" th:field="*{email}"></label><br>
+    <input type="submit">
+</form>
+<footer th:insert="blocks/header :: footer"></footer>
+</body>
+</html>

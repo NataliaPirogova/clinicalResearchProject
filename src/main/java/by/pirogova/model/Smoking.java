@@ -1,0 +1,5 @@
+package by.pirogova.model;
+
+public enum Smoking {
+    NEVER_SMOKE_OR_TRY_SEVERAL_TIMES, SMOKE_EARLIER, SMOKE_SEVERAL_TIMES_A_MONTH, SMOKE_1_TIME_A_WEEK_OR_MORE_OFTEN
+}
