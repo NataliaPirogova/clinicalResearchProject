@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All medicines</title>
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<p>List of medicines on clinical trials at this time</p>
+<table>
+    <th:block th:if="${medicineCount>0}">
+        <tr th:each="medicine, i:${medicines}">
+            <td class="left-side" th:text="${i.index+1+(page-1)*10}"></td>
+            <td class="title" th:text="${medicine.name}"></td>
+            <td th:text="${medicine.name}"></td>
+            <td th:text="${medicine.manufacturer}"></td>
+        </tr>
+    </th:block>
+</table>
+<a th:href="@{medicine/add}">Add new</a>
+
+</body>
+</html>
