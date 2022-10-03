@@ -6,21 +6,21 @@
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
-<form action="/registrationVolunteerPage3submit" method="post" th:object="*{volunteerPrimaryHealthInfo}">
+<form action="/registrationVolunteerPrimaryHealthInfo" method="post" th:object="${volunteerPrimaryHealthInfo}">
     <label for="height">Your height in millimeteres:
-        <input type="number" id="height" max="257">
+        <input type="number" id="height" max="257" th:field="*{height}">
     </label><br>
     <label for="weight">Your weight in kg:
-        <input type="number" id="weight">
+        <input type="number" id="weight" th:field="*{weight}">
     </label><br>
     <label for="pulse">Your pulse now:
-        <input type="number" id="pulse">
+        <input type="number" id="pulse" th:field="*{pulse}">
     </label><br>
     <label for="bloodPressureSystolic">Your blood pressure now:
-        <input type="number" id="bloodPressureSystolic">/
+        <input type="number" id="bloodPressureSystolic" th:field="*{bloodPressureSystolic}">/
     </label>
     <label for="bloodPressureDiastolic">
-        <input type="number" id="bloodPressureDiastolic">
+        <input type="number" id="bloodPressureDiastolic" th:field="*{bloodPressureDiastolic}">
     </label><br>
     <input type="submit">
 </form>

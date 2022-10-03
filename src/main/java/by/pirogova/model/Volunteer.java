@@ -1,5 +1,6 @@
 package by.pirogova.model;
 
+import by.pirogova.model.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

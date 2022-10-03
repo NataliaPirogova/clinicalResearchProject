@@ -15,8 +15,9 @@ public class Medicine {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String name;
+    private String medicineName;
     @ManyToOne
+    @JoinColumn(name = "manufacturers_id")
     private MedicineManufacturer manufacturer;
 
 }
