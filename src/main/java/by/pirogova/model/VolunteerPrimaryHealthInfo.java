@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 public class VolunteerPrimaryHealthInfo {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private int height;
     private int weight;

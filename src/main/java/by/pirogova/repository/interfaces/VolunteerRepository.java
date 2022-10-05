@@ -7,7 +7,7 @@ import java.util.List;
 public interface VolunteerRepository {
     List<Volunteer> allVolunteers();
 
-    void addVolunteer(Volunteer volunteer);
+    Volunteer addVolunteer(Volunteer volunteer);
 
     void editVolunteer(Volunteer volunteer);
 

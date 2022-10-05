@@ -26,8 +26,8 @@ public class VolunteerServiceImplementation implements VolunteerService {
     }
 
     @Override
-    public void addVolunteer(Volunteer volunteer) {
-        volunteerRepository.addVolunteer(volunteer);
+    public Volunteer addVolunteer(Volunteer volunteer) {
+        return volunteerRepository.addVolunteer(volunteer);
     }
 
     @Override

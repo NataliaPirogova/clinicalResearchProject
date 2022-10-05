@@ -6,7 +6,7 @@
 </head>
 <body>
 <header th:insert="blocks/header :: header"></header>
-<form action="/registrationVolunteerPrimaryHealthInfo" method="post" th:object="${volunteerPrimaryHealthInfo}">
+<form th:action="@{/registrationVolunteerPrimaryHealthInfo}" th:method="post" th:object="${volunteerPrimaryHealthInfo}">
     <label for="height">Your height in millimeteres:
         <input type="number" id="height" max="257" th:field="*{height}">
     </label><br>

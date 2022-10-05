@@ -10,7 +10,7 @@
 </div>
 <form th:action="@{/medicine/add}" method="post" th:object="${medicine}">
     <label for="manufacturer">Choose manufacturer from database:
-    <select id="manufacturer" th:each="manufacturer, i : ${manufacturers}" th:field="*{manufacturer}">
+    <select id="manufacturer"  th:field="*{manufacturer}" th:each="manufacturer, i : ${manufacturers}">
         <option th:text="${manufacturer.name}"></option>
     </select></label><br>
     <p>or</p><br>

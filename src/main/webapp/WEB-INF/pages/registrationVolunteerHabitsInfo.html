@@ -7,6 +7,9 @@
 <body>
 <header th:insert="blocks/header :: header"></header>
 <form th:action="@{/registrationVolunteerHabitsInfo}" method="post" th:object="${volunteerHabitsInfo}">
+<!--    <input hidden th:value="${volunteerHabitsInfo.setVolunteer(volunteerByID)}" th:field="*{volunteer}">-->
+<!--    <input th:field="*{product.producer}" th:value="${product.setProducer(producer)}"-->
+<!--             th:name="producer" hidden>-->
     <label for="smoking">Do you smoke?
         <select id="smoking" th:field="*{smoking}">
             <option value="NO">Never smoke or try several times</option>

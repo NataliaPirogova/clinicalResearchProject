@@ -26,9 +26,10 @@ public class VolunteerRepositoryImplementation implements VolunteerRepository {
     }
 
     @Override
-    public void addVolunteer(Volunteer volunteer) {
+    public Volunteer addVolunteer(Volunteer volunteer) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(volunteer);
+        return volunteer;
     }
 
     @Override

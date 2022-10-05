@@ -14,20 +14,23 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class VolunteerController {
 
     private final VolunteerService volunteerService;
     private final VolunteerHabitsInfoService volunteerHabitsInfoService;
     private final VolunteerPrimaryHealthInfoService volunteerPrimaryHealthInfoService;
-
+private final HttpSession httpSession;
     @Autowired
     public VolunteerController(VolunteerService volunteerService,
                                VolunteerHabitsInfoService volunteerHabitsInfoService,
-                               VolunteerPrimaryHealthInfoService volunteerPrimaryHealthInfoService) {
+                               VolunteerPrimaryHealthInfoService volunteerPrimaryHealthInfoService, HttpSession httpSession) {
         this.volunteerService = volunteerService;
         this.volunteerHabitsInfoService = volunteerHabitsInfoService;
         this.volunteerPrimaryHealthInfoService = volunteerPrimaryHealthInfoService;
+        this.httpSession = httpSession;
     }
 
 
@@ -41,7 +44,8 @@ public class VolunteerController {
     @PostMapping(value = "/registrationVolunteer")
     public ModelAndView registerVolunteer(@ModelAttribute("volunteer") Volunteer volunteer) {
         ModelAndView modelAndView = new ModelAndView();
-        volunteerService.addVolunteer(volunteer);
+        Volunteer volunteer1 = volunteerService.addVolunteer(volunteer);
+        httpSession.setAttribute("newVolunteer", volunteer1);
         modelAndView.setViewName("redirect:/registrationVolunteerHabitsInfo");
         return modelAndView;
     }
@@ -56,6 +60,8 @@ public class VolunteerController {
     @PostMapping(value = "/registrationVolunteerHabitsInfo")
     public ModelAndView registerVolunteerHabits(@ModelAttribute("volunteerHabitsInfo") VolunteerHabitsInfo volunteerHabitsInfo) {
         ModelAndView modelAndView = new ModelAndView();
+        Volunteer volunteer = (Volunteer) httpSession.getAttribute("newVolunteer");
+        volunteerHabitsInfo.setVolunteer(volunteer);
         volunteerHabitsInfoService.addVolunteerHabitsInfo(volunteerHabitsInfo);
         modelAndView.setViewName("redirect:/registrationVolunteerPrimaryHealthInfo");
         return modelAndView;
@@ -71,8 +77,10 @@ public class VolunteerController {
     @PostMapping(value = "/registrationVolunteerPrimaryHealthInfo")
     public ModelAndView registerVolunteerPrimaryHealthInfo(@ModelAttribute("volunteerPrimaryHealthInfo") VolunteerPrimaryHealthInfo volunteerPrimaryHealthInfo) {
         ModelAndView modelAndView = new ModelAndView();
+        Volunteer volunteer = (Volunteer) httpSession.getAttribute("newVolunteer");
+        volunteerPrimaryHealthInfo.setVolunteer(volunteer);
         volunteerPrimaryHealthInfoService.addVolunteerPrimaryHealthInfo(volunteerPrimaryHealthInfo);
-        modelAndView.setViewName("redirect:/registrationVolunteerHabitsInfo");
+        modelAndView.setViewName("main");
         return modelAndView;
     }
 
