@@ -9,10 +9,13 @@
     Add new medicine for clinical trials. Fill in the following form.
 </div>
 <form th:action="@{/medicine/add}" method="post" th:object="${medicine}">
-    <label for="manufacturer">Choose manufacturer from database:
-    <select id="manufacturer"  th:field="*{manufacturer}" th:each="manufacturer, i : ${manufacturers}">
-        <option th:text="${manufacturer.name}"></option>
-    </select></label><br>
+<!--    <label for="manufacturer">Choose manufacturer from database:-->
+<!--    <select id="manufacturer"  th:field="*{manufacturer}" >-->
+<!--        <option th:each="manufacturer, i : ${manufacturers}" th:text="${manufacturer.name}"></option>-->
+<!--    </select></label><br>-->
+    <ul th:each="manufacturer, i : ${manufacturers}">
+        <li th:text="${i.index}+' '+${manufacturer.name}"></li>
+    </ul>
     <p>or</p><br>
     <a th:href = "@{/medicine/registerManufacturer}">Add new manufacturer</a><br><br>
     <label for="medicineName">Name of medicine

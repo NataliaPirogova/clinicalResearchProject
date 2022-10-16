@@ -22,8 +22,9 @@ public class MedicineManufacturerServiceImplementation implements MedicineManufa
     }
 
     @Override
-    public void add(MedicineManufacturer medicineManufacturer) {
+    public MedicineManufacturer add(MedicineManufacturer medicineManufacturer) {
         medicineManufacturerRepository.add(medicineManufacturer);
+        return medicineManufacturer;
     }
 
     @Override

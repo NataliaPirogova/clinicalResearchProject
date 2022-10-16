@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 public class VolunteerController {
@@ -22,7 +23,8 @@ public class VolunteerController {
     private final VolunteerService volunteerService;
     private final VolunteerHabitsInfoService volunteerHabitsInfoService;
     private final VolunteerPrimaryHealthInfoService volunteerPrimaryHealthInfoService;
-private final HttpSession httpSession;
+    private final HttpSession httpSession;
+
     @Autowired
     public VolunteerController(VolunteerService volunteerService,
                                VolunteerHabitsInfoService volunteerHabitsInfoService,
@@ -81,6 +83,14 @@ private final HttpSession httpSession;
         volunteerPrimaryHealthInfo.setVolunteer(volunteer);
         volunteerPrimaryHealthInfoService.addVolunteerPrimaryHealthInfo(volunteerPrimaryHealthInfo);
         modelAndView.setViewName("main");
+        return modelAndView;
+    }
+
+    @GetMapping("/volunteersAll")
+    public ModelAndView volunteersAll(ModelAndView modelAndView){
+        List<Volunteer> volunteers = volunteerService.allVolunteers();
+        modelAndView.addObject("volunteers", volunteers);
+        modelAndView.setViewName("volunteersAll");
         return modelAndView;
     }
 

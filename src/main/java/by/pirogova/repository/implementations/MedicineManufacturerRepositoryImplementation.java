@@ -21,9 +21,10 @@ public class MedicineManufacturerRepositoryImplementation implements MedicineMan
     }
 
     @Override
-    public void add(MedicineManufacturer medicineManufacturer) {
+    public MedicineManufacturer add(MedicineManufacturer medicineManufacturer) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(medicineManufacturer);
+        return  medicineManufacturer;
     }
 
     @Override

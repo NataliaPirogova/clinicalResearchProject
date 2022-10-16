@@ -21,8 +21,9 @@ public class MedicineServiceImplementation implements MedicineService {
     }
 
     @Override
-    public void add(Medicine medicine) {
+    public Medicine add(Medicine medicine) {
         medicineRepository.add(medicine);
+        return medicine;
     }
 
     @Override

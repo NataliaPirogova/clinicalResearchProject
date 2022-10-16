@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -20,11 +21,13 @@ import java.util.List;
 public class MedicineController {
     private final MedicineService medicineService;
     private final MedicineManufacturerService medicineManufacturerService;
+    private final HttpSession httpSession;
 
     @Autowired
-    public MedicineController(MedicineService medicineService, MedicineManufacturerService medicineManufacturerService) {
+    public MedicineController(MedicineService medicineService, MedicineManufacturerService medicineManufacturerService, HttpSession httpSession) {
         this.medicineService = medicineService;
         this.medicineManufacturerService = medicineManufacturerService;
+        this.httpSession = httpSession;
     }
 
     @GetMapping
@@ -40,6 +43,8 @@ public class MedicineController {
     public ModelAndView registrationMedicinePage() {
         //можно выносить в VC config ????
         ModelAndView modelAndView = new ModelAndView();
+        List<MedicineManufacturer> manufacturers = medicineManufacturerService.allMedicineManufacturers();
+        modelAndView.addObject("manufacturers", manufacturers);
         modelAndView.setViewName("registrationMedicine");
         return modelAndView;
     }
@@ -47,6 +52,8 @@ public class MedicineController {
     @PostMapping(value = "/add")
     public ModelAndView registrationMedicine(@ModelAttribute("medicine") Medicine medicine) {
         ModelAndView modelAndView = new ModelAndView();
+        MedicineManufacturer manufacturer = (MedicineManufacturer) httpSession.getAttribute("newManufacturer");
+        medicine.setManufacturer(manufacturer);
         medicineService.add(medicine);
         modelAndView.setViewName("redirect:/");
         return modelAndView;
@@ -62,8 +69,9 @@ public class MedicineController {
     @PostMapping(value = "/registerManufacturer")
     public ModelAndView registrationMedicineManufacturer(@ModelAttribute("manufacturer") MedicineManufacturer manufacturer) {
         ModelAndView modelAndView = new ModelAndView();
-        medicineManufacturerService.add(manufacturer);
-        modelAndView.setViewName("redirect:/");
+        MedicineManufacturer newManufacturer = medicineManufacturerService.add(manufacturer);
+        httpSession.setAttribute("newManufacturer", newManufacturer);
+        modelAndView.setViewName("redirect:/medicine/add");
         return modelAndView;
     }
 

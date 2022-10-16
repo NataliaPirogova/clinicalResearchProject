@@ -20,9 +20,10 @@ public class MedicineRepositoryImplementation implements MedicineRepository {
     }
 
     @Override
-    public void add(Medicine medicine) {
+    public Medicine add(Medicine medicine) {
         Session session = sessionFactory.getCurrentSession();
         session.persist(medicine);
+        return medicine;
     }
 
     @Override

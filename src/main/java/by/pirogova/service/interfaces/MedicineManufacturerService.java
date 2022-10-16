@@ -5,7 +5,7 @@ import by.pirogova.model.MedicineManufacturer;
 import java.util.List;
 
 public interface MedicineManufacturerService {
-    void add(MedicineManufacturer medicineManufacturer);
+    MedicineManufacturer add(MedicineManufacturer medicineManufacturer);
 
     void edit(MedicineManufacturer medicineManufacturer);
 
